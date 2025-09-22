@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAMRI Human Capital Intelligence Platform - SRS Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff9a00;
+            --secondary-color: #1a3a6c;
+            --accent-color: #0072c6;
+            --light-color: #f1faee;
+            --dark-color: #1d3557;
+            --white-color: #ffffff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        .header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-right: 20px;
+        }
+        
+        .title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-top: 5px;
+            color: #ddd;
+        }
+        
+        /* Document Styles */
+        .document-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .document-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .document-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .document-subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-left: 4px solid var(--primary-color);
+            background-color: #fff;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .subsection {
+            margin-bottom: 25px;
+        }
+        
+        .subsection-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        
+        /* Table Styles */
+        .table-custom {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .table-custom th {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .table-custom td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .table-custom tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .table-custom tr:hover {
+            background-color: #e3f2fd;
+        }
+        
+        /* List Styles */
+        .requirement-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .requirement-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-color);
+            background-color: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .requirement-id {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        /* Badge Styles */
+        .badge-custom {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+        
+        .badge-functional {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .badge-nonfunctional {
+            background-color: #f3e5f5;
+            color: #7b1fa2;
+        }
+        
+        .badge-mandatory {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            
+            .header, .no-print {
+                display: none;
+            }
+            
+            .document-container {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            
+            .section {
+                border-left: 4px solid var(--primary-color);
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Button Styles */
+        .btn-print {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .btn-print:hover {
+            background-color: #e68a00;
+            transform: translateY(-2px);
+        }
+        
+        /* Code Block Styles */
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+        }
+        
+        /* Diagram Placeholder */
+        .diagram-placeholder {
+            background-color: #f5f5f5;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+            color: #666;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="https://placehold.co/120x40/1a3a6c/ffffff?text=DAMRI" alt="DAMRI Logo" class="logo">
+                    <div>
+                        <h1 class="title">DAMRI HUMAN CAPITAL INTELLIGENCE PLATFORM</h1>
+                        <p class="subtitle">Software Requirements Specification (SRS) Document</p>
+                    </div>
+                </div>
+                <div class="text-end">
+                    <p class="mb-1"><strong>Document Version:</strong> 1.0</p>
+                    <p class="mb-1"><strong>Date:</strong> October 26, 2023</p>
+                    <p><strong>Status:</strong> Approved</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <button class="btn-print" onclick="window.print()">
+            <i class="fas fa-print me-2"></i>Print Document
+        </button>
+        
+        <div class="document-container">
+            <div class="document-header">
+                <h1 class="document-title">SOFTWARE REQUIREMENTS SPECIFICATION</h1>
+                <h2 class="document-subtitle">DAMRI Human Capital Intelligence Platform</h2>
+            </div>
+
+            <!-- Table of Contents -->
+            <div class="section">
+                <h2 class="section-title">Table of Contents</h2>
+                <ol>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#overall-description">Overall Description</a></li>
+                    <li><a href="#functional-requirements">Functional Requirements</a></li>
+                    <li><a href="#non-functional-requirements">Non-Functional Requirements</a></li>
+                    <li><a href="#system-architecture">System Architecture</a></li>
+                    <li><a href="#data-model">Data Model</a></li>
+                    <li><a href="#user-interface">User Interface Requirements</a></li>
+                    <li><a href="#performance-requirements">Performance Requirements</a></li>
+                    <li><a href="#security-requirements">Security Requirements</a></li>
+                    <li><a href="#appendix">Appendix</a></li>
+                </ol>
+            </div>
+
+            <!-- 1. Introduction -->
+            <div class="section" id="introduction">
+                <h2 class="section-title">1. Introduction</h2>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">1.1 Purpose</h3>
+                    <p>This document describes the software requirements for the DAMRI Human Capital Intelligence Platform, an integrated digital platform for employee monitoring based on data, serving as an end-to-end talent management solution for DAMRI.</p>
+                    <p>The purpose of this document is to provide a detailed description of the system's functionality, interfaces, and performance requirements to guide the development team in building the system according to stakeholder needs.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">1.2 Scope</h3>
+                    <p>The DAMRI Human Capital Intelligence Platform will provide the following core functionalities:</p>
+                    <ul>
+                        <li>Decision Support System (DSS) for employee rotation and mutation</li>
+                        <li>Analytics tools for strategic decision-making</li>
+                        <li>Decision filtering for training suitability</li>
+                        <li>Comprehensive dashboard with key performance indicators</li>
+                        <li>Personalized employee profile recommendations</li>
+                        <li>Employee data management and record keeping</li>
+                    </ul>
+                    <p>The system will integrate with existing DAMRI systems for employee performance tracking and will serve HR personnel, department managers, and executive leadership.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">1.3 Definitions, Acronyms, and Abbreviations</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Term</th>
+                                <th>Definition</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>DAMRI</td>
+                                <td>Perusahaan Otobus milik pemerintah Indonesia</td>
+                            </tr>
+                            <tr>
+                                <td>SRS</td>
+                                <td>Software Requirements Specification</td>
+                            </tr>
+                            <tr>
+                                <td>KPI</td>
+                                <td>Key Performance Indicator</td>
+                            </tr>
+                            <tr>
+                                <td>DSS</td>
+                                <td>Decision Support System</td>
+                            </tr>
+                            <tr>
+                                <td>SP</td>
+                                <td>Surat Peringatan (Warning Letter)</td>
+                            </tr>
+                            <tr>
+                                <td>HR</td>
+                                <td>Human Resources</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">1.4 References</h3>
+                    <ul>
+                        <li>DAMRI HR Policy Manual, Version 3.2</li>
+                        <li>DAMRI Employee Performance Evaluation Guidelines</li>
+                        <li>DAMRI Training and Development Framework</li>
+                        <li>DAMRI Organizational Structure Document</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">1.5 Overview</h3>
+                    <p>The remainder of this document is organized as follows:</p>
+                    <ul>
+                        <li>Section 2 describes the overall system context and user characteristics</li>
+                        <li>Section 3 details the functional requirements</li>
+                        <li>Section 4 outlines the non-functional requirements</li>
+                        <li>Section 5 presents the system architecture</li>
+                        <li>Section 6 describes the data model</li>
+                        <li>Section 7 specifies the user interface requirements</li>
+                        <li>Section 8 defines performance requirements</li>
+                        <li>Section 9 outlines security requirements</li>
+                        <li>Section 10 provides additional information in the appendix</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 2. Overall Description -->
+            <div class="section" id="overall-description">
+                <h2 class="section-title">2. Overall Description</h2>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">2.1 Product Perspective</h3>
+                    <p>The DAMRI Human Capital Intelligence Platform is a standalone web-based application that will integrate with existing DAMRI systems including:</p>
+                    <ul>
+                        <li>Employee Attendance System</li>
+                        <li>Payroll Management System</li>
+                        <li>Training Management System</li>
+                        <li>Performance Evaluation System</li>
+                    </ul>
+                    <p>The system will serve as a central hub for all employee-related data and analytics, providing decision support for HR management.</p>
+                    
+                    <div class="diagram-placeholder">
+                        <h4>System Context Diagram</h4>
+                        <p>[Diagram showing DAMRI HCI Platform interacting with other DAMRI systems and users]</p>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">2.2 Product Functions</h3>
+                    <p>The main functions of the system include:</p>
+                    <ol>
+                        <li><strong>Employee Data Management:</strong> Store and manage comprehensive employee profiles</li>
+                        <li><strong>Performance Analytics:</strong> Track and analyze employee KPIs and performance metrics</li>
+                        <li><strong>Decision Support:</strong> Provide data-driven recommendations for employee rotation, mutation, and training</li>
+                        <li><strong>Dashboard Visualization:</strong> Present key metrics and insights through interactive dashboards</li>
+                        <li><strong>Reporting:</strong> Generate comprehensive reports for HR and management</li>
+                        <li><strong>Alert System:</strong> Notify HR of critical employee issues or opportunities</li>
+                    </ol>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">2.3 User Characteristics</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>User Type</th>
+                                <th>Description</th>
+                                <th>Technical Proficiency</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>HR Administrators</td>
+                                <td>Manage employee data, run reports, handle day-to-day HR operations</td>
+                                <td>Medium - Familiar with HR systems</td>
+                            </tr>
+                            <tr>
+                                <td>Department Managers</td>
+                                <td>Monitor team performance, make promotion/rotation decisions</td>
+                                <td>Medium - Comfortable with analytics dashboards</td>
+                            </tr>
+                            <tr>
+                                <td>Executive Leadership</td>
+                                <td>Strategic decision-making, workforce planning, talent management</td>
+                                <td>Low-Medium - Need simplified, high-level views</td>
+                            </tr>
+                            <tr>
+                                <td>System Administrators</td>
+                                <td>Manage system configuration, user access, integrations</td>
+                                <td>High - Technical expertise required</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">2.4 Constraints</h3>
+                    <ul>
+                        <li><strong>Integration:</strong> Must integrate with existing DAMRI systems using available APIs</li>
+                        <li><strong>Security:</strong> Must comply with DAMRI data security and privacy policies</li>
+                        <li><strong>Timeline:</strong> Must be delivered in phases with core functionality available within 6 months</li>
+                        <li><strong>Budget:</strong> Development and implementation must stay within approved budget</li>
+                        <li><strong>Compatibility:</strong> Must support modern web browsers (Chrome, Firefox, Edge, Safari)</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">2.5 Assumptions and Dependencies</h3>
+                    <p><strong>Assumptions:</strong></p>
+                    <ul>
+                        <li>Existing DAMRI systems will provide necessary APIs for integration</li>
+                        <li>Employee data will be maintained and updated regularly by HR staff</li>
+                        <li>Users will have adequate training on system usage</li>
+                        <li>Internet connectivity will be available at all DAMRI locations</li>
+                    </ul>
+                    
+                    <p><strong>Dependencies:</strong></p>
+                    <ul>
+                        <li>Employee data from existing HR systems</li>
+                        <li>Performance data from evaluation systems</li>
+                        <li>Attendance data from timekeeping systems</li>
+                        <li>Training records from LMS (Learning Management System)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Functional Requirements -->
+            <div class="section" id="functional-requirements">
+                <h2 class="section-title">3. Functional Requirements</h2>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">3.1 Employee Data Management</h3>
+                    <ul class="requirement-list">
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-001: Employee Profile Management</div>
+                            <p>The system shall allow authorized users to create, view, edit, and delete employee profiles containing personal information, position, department, salary scale, and employment history.</p>
+                        </li>
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-002: Attendance Tracking</div>
+                            <p>The system shall track and display employee attendance metrics including attendance rate, number of late arrivals, and number of absences.</p>
+                        </li>
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-003: Case Record Management</div>
+                            <p>The system shall maintain a record of employee cases including achievements, warnings (SP), and other notable events with dates and descriptions.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">3.2 Performance Management</h3>
+                    <ul class="requirement-list">
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-004: KPI Calculation</div>
+                            <p>The system shall calculate an overall KPI score for each employee based on attendance, supervisor evaluation, behavioral competencies, technical competencies, training completion, and branch performance.</p>
+                        </li>
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-005: Supervisor Evaluation</div>
+                            <p>The system shall allow supervisors to input evaluation scores (1-5 scale) and comments for their team members.</p>
+                        </li>
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-006: Competency Assessment</div>
+                            <p>The system shall assess and track both behavioral and technical competencies for each employee with scores and category breakdowns.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">3.3 Training and Development</h3>
+                    <ul class="requirement-list">
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-007: Training Record Management</div>
+                            <p>The system shall track completed and in-progress training for each employee, including certifications earned.</p>
+                        </li>
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-008: Training Suitability Analysis</div>
+                            <p>The system shall analyze employee data to determine suitability for specific training programs with confidence levels.</p>
+                        </li>
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-009: Training Recommendations</div>
+                            <p>The system shall generate personalized training recommendations based on employee performance, competencies, and career development needs.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">3.4 Decision Support System</h3>
+                    <ul class="requirement-list">
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-010: Employee Rotation Recommendations</div>
+                            <p>The system shall provide data-driven recommendations for employee rotation to avoid misplacement based on historical performance, skills, and position requirements.</p>
+                        </li>
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-011: Promotion Eligibility</div>
+                            <p>The system shall determine and display promotion eligibility based on KPI scores, tenure, competencies, and achievement records.</p>
+                        </li>
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-012: Bonus Eligibility</div>
+                            <p>The system shall calculate and display bonus eligibility based on performance metrics and company policies.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">3.5 Analytics and Reporting</h3>
+                    <ul class="requirement-list">
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-013: Dashboard Visualization</div>
+                            <p>The system shall provide interactive dashboards displaying key metrics including total employees, average KPI, promotion-ready employees, and employees needing improvement.</p>
+                        </li>
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-014: Department Performance Analysis</div>
+                            <p>The system shall analyze and compare performance across departments with visualizations and rankings.</p>
+                        </li>
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-015: Performance Distribution</div>
+                            <p>The system shall display the distribution of employee performance across defined ranges (Excellent, Good, Average, Needs Improvement).</p>
+                        </li>
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-016: Custom Reporting</div>
+                            <p>The system shall allow users to generate custom reports with selected parameters and export them in PDF and Excel formats.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">3.6 User Management</h3>
+                    <ul class="requirement-list">
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-017: Role-Based Access Control</div>
+                            <p>The system shall implement role-based access control to ensure users can only access functionality appropriate to their role.</p>
+                        </li>
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-018: User Authentication</div>
+                            <p>The system shall authenticate users with username and password, with options for integration with existing DAMRI authentication systems.</p>
+                        </li>
+                        <li class="requirement-item">
+                            <div class="requirement-id">FR-019: Audit Trail</div>
+                            <p>The system shall maintain an audit trail of all user activities, especially data modifications, for security and compliance purposes.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 4. Non-Functional Requirements -->
+            <div class="section" id="non-functional-requirements">
+                <h2 class="section-title">4. Non-Functional Requirements</h2>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">4.1 Performance Requirements</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Requirement ID</th>
+                                <th>Description</th>
+                                <th>Target</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>NFR-001</td>
+                                <td>System Response Time</td>
+                                <td>95% of operations should complete within 3 seconds</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-002</td>
+                                <td>Dashboard Load Time</td>
+                                <td>Initial dashboard should load within 5 seconds</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-003</td>
+                                <td>Concurrent Users</td>
+                                <td>Support up to 500 concurrent users</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-004</td>
+                                <td>Report Generation</td>
+                                <td>Reports should generate within 30 seconds for datasets up to 10,000 records</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">4.2 Security Requirements</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Requirement ID</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>NFR-005</td>
+                                <td>All data transmissions must be encrypted using TLS 1.2 or higher</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-006</td>
+                                <td>Passwords must be stored using strong hashing algorithms (bcrypt)</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-007</td>
+                                <td>System must implement role-based access control with least privilege principle</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-008</td>
+                                <td>System must maintain audit logs of all sensitive operations</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-009</td>
+                                <td>System must comply with Indonesian data protection regulations</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">4.3 Usability Requirements</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Requirement ID</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>NFR-010</td>
+                                <td>System should have intuitive navigation with minimal training required</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-011</td>
+                                <td>Critical functions should be accessible within 3 clicks from the dashboard</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-012</td>
+                                <td>System should provide contextual help and tooltips for complex features</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-013</td>
+                                <td>User interface should be consistent throughout the application</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-014</td>
+                                <td>System should be responsive and usable on desktop, tablet, and mobile devices</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">4.4 Reliability Requirements</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Requirement ID</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>NFR-015</td>
+                                <td>System availability should be 99.5% during business hours (7am-7pm)</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-016</td>
+                                <td>System should have automated backup and recovery procedures</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-017</td>
+                                <td>System should handle errors gracefully with meaningful error messages</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-018</td>
+                                <td>System should have monitoring and alerting for critical failures</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">4.5 Maintainability Requirements</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Requirement ID</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>NFR-019</td>
+                                <td>System should be modular with clear separation of concerns</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-020</td>
+                                <td>Code should be well-documented with inline comments and API documentation</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-021</td>
+                                <td>System should support configuration changes without code modifications</td>
+                            </tr>
+                            <tr>
+                                <td>NFR-022</td>
+                                <td>System should have comprehensive automated test coverage (minimum 80%)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 5. System Architecture -->
+            <div class="section" id="system-architecture">
+                <h2 class="section-title">5. System Architecture</h2>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">5.1 Architectural Overview</h3>
+                    <p>The DAMRI Human Capital Intelligence Platform follows a three-tier architecture:</p>
+                    <ol>
+                        <li><strong>Presentation Tier:</strong> Web-based user interface built with modern HTML5, CSS3, and JavaScript</li>
+                        <li><strong>Application Tier:</strong> Business logic and API services</li>
+                        <li><strong>Data Tier:</strong> Database management system for storing employee data and analytics</li>
+                    </ol>
+                    
+                    <div class="diagram-placeholder">
+                        <h4>System Architecture Diagram</h4>
+                        <p>[Diagram showing three-tier architecture with components and data flow]</p>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">5.2 Technology Stack</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Layer</th>
+                                <th>Technology</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Frontend</td>
+                                <td>HTML5, CSS3, JavaScript, Bootstrap 5</td>
+                                <td>Responsive user interface with modern design</td>
+                            </tr>
+                            <tr>
+                                <td>Backend</td>
+                                <td>PHP with CodeIgniter Framework</td>
+                                <td>Business logic, API endpoints, and integration services</td>
+                            </tr>
+                            <tr>
+                                <td>Database</td>
+                                <td>MySQL 8.0</td>
+                                <td>Relational database for structured employee data</td>
+                            </tr>
+                            <tr>
+                                <td>Server</td>
+                                <td>Apache/Nginx on Linux</td>
+                                <td>Web server and application hosting</td>
+                            </tr>
+                            <tr>
+                                <td>Integration</td>
+                                <td>RESTful APIs, Webhooks</td>
+                                <td>Integration with existing DAMRI systems</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">5.3 Integration Points</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>System</th>
+                                <th>Integration Method</th>
+                                <th>Data Exchanged</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Employee Attendance System</td>
+                                <td>REST API</td>
+                                <td>Attendance records, late arrivals, absences</td>
+                            </tr>
+                            <tr>
+                                <td>Payroll Management System</td>
+                                <td>REST API</td>
+                                <td>Salary scales, bonus calculations, payroll data</td>
+                            </tr>
+                            <tr>
+                                <td>Training Management System</td>
+                                <td>REST API</td>
+                                <td>Training records, certifications, completion status</td>
+                            </tr>
+                            <tr>
+                                <td>Performance Evaluation System</td>
+                                <td>REST API</td>
+                                <td>Supervisor evaluations, KPI scores, feedback</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 6. Data Model -->
+            <div class="section" id="data-model">
+                <h2 class="section-title">6. Data Model</h2>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">6.1 Entity Relationship Diagram</h3>
+                    <div class="diagram-placeholder">
+                        <h4>Entity Relationship Diagram (ERD)</h4>
+                        <p>[ERD showing relationships between Employee, Department, Position, KPI, Training, etc.]</p>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">6.2 Key Data Entities</h3>
+                    
+                    <div class="subsection">
+                        <h4 class="subsection-title">Employee Entity</h4>
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>employee_id</td>
+                                    <td>VARCHAR(20)</td>
+                                    <td>Unique employee identifier (DAM-XXXX)</td>
+                                </tr>
+                                <tr>
+                                    <td>name</td>
+                                    <td>VARCHAR(100)</td>
+                                    <td>Full name of employee</td>
+                                </tr>
+                                <tr>
+                                    <td>department</td>
+                                    <td>VARCHAR(50)</td>
+                                    <td>Department name</td>
+                                </tr>
+                                <tr>
+                                    <td>position</td>
+                                    <td>VARCHAR(100)</td>
+                                    <td>Current position/title</td>
+                                </tr>
+                                <tr>
+                                    <td>salary_scale</td>
+                                    <td>VARCHAR(20)</td>
+                                    <td>Salary grade/level</td>
+                                </tr>
+                                <tr>
+                                    <td>hire_date</td>
+                                    <td>DATE</td>
+                                    <td>Date of employment</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4 class="subsection-title">KPI Entity</h4>
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>kpi_id</td>
+                                    <td>INT</td>
+                                    <td>Unique KPI record identifier</td>
+                                </tr>
+                                <tr>
+                                    <td>employee_id</td>
+                                    <td>VARCHAR(20)</td>
+                                    <td>Reference to employee</td>
+                                </tr>
+                                <tr>
+                                    <td>overall_score</td>
+                                    <td>DECIMAL(5,2)</td>
+                                    <td>Calculated overall KPI score (0-100)</td>
+                                </tr>
+                                <tr>
+                                    <td>attendance_rate</td>
+                                    <td>DECIMAL(5,2)</td>
+                                    <td>Attendance percentage</td>
+                                </tr>
+                                <tr>
+                                    <td>supervisor_score</td>
+                                    <td>DECIMAL(3,2)</td>
+                                    <td>Supervisor evaluation (1.00-5.00)</td>
+                                </tr>
+                                <tr>
+                                    <td>calculation_date</td>
+                                    <td>DATE</td>
+                                    <td>Date of KPI calculation</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4 class="subsection-title">Training Entity</h4>
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>training_id</td>
+                                    <td>INT</td>
+                                    <td>Unique training record identifier</td>
+                                </tr>
+                                <tr>
+                                    <td>employee_id</td>
+                                    <td>VARCHAR(20)</td>
+                                    <td>Reference to employee</td>
+                                </tr>
+                                <tr>
+                                    <td>training_name</td>
+                                    <td>VARCHAR(200)</td>
+                                    <td>Name of training program</td>
+                                </tr>
+                                <tr>
+                                    <td>completion_date</td>
+                                    <td>DATE</td>
+                                    <td>Date training was completed</td>
+                                </tr>
+                                <tr>
+                                    <td>certification</td>
+                                    <td>VARCHAR(200)</td>
+                                    <td>Certification earned (if any)</td>
+                                </tr>
+                                <tr>
+                                    <td>status</td>
+                                    <td>ENUM('completed', 'in_progress', 'scheduled')</td>
+                                    <td>Current status of training</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">6.3 KPI Calculation Formula</h3>
+                    <p>The Overall KPI Score is calculated using the following weighted formula:</p>
+                    
+                    <div class="code-block">
+                        Overall KPI Score =<br>
+                        (Attendance Score × 0.15) +<br>
+                        (Supervisor Evaluation × 0.25) +<br>
+                        (Behavioral Competencies × 0.20) +<br>
+                        (Technical Competencies × 0.25) +<br>
+                        (Training & Certification × 0.10) +<br>
+                        (Branch Performance × 0.05)<br>
+                        <br>
+                        // Adjustments based on case records:<br>
+                        For each Achievement: +3 points (max +15)<br>
+                        For each Warning: -5 points for Minor, -10 points for Major<br>
+                        <br>
+                        // Ensure score stays within 0-100 range<br>
+                        Final Score = MAX(0, MIN(100, Calculated Score))
+                    </div>
+                    
+                    <p><strong>Component Details:</strong></p>
+                    <ul>
+                        <li><strong>Attendance Score:</strong> Direct percentage of attendance rate</li>
+                        <li><strong>Supervisor Evaluation:</strong> Converted to percentage (Score × 20)</li>
+                        <li><strong>Behavioral Competencies:</strong> Average of category scores converted to percentage</li>
+                        <li><strong>Technical Competencies:</strong> Average of category scores converted to percentage</li>
+                        <li><strong>Training & Certification:</strong> Based on completion rate and certification level</li>
+                        <li><strong>Branch Performance:</strong> Direct score from branch performance metrics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 7. User Interface Requirements -->
+            <div class="section" id="user-interface">
+                <h2 class="section-title">7. User Interface Requirements</h2>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">7.1 UI Design Principles</h3>
+                    <ul>
+                        <li><strong>Consistency:</strong> Maintain consistent layout, colors, and interaction patterns throughout the application</li>
+                        <li><strong>Simplicity:</strong> Minimize complexity and cognitive load for users</li>
+                        <li><strong>Efficiency:</strong> Optimize workflows to minimize clicks and data entry</li>
+                        <li><strong>Accessibility:</strong> Ensure the interface is usable by people with disabilities</li>
+                        <li><strong>Responsiveness:</strong> Adapt layout for different screen sizes and devices</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">7.2 Wireframes</h3>
+                    <div class="diagram-placeholder">
+                        <h4>Dashboard Wireframe</h4>
+                        <p>[Wireframe showing dashboard layout with stats cards, filters, and employee grid]</p>
+                    </div>
+                    
+                    <div class="diagram-placeholder">
+                        <h4>Employee Profile Wireframe</h4>
+                        <p>[Wireframe showing detailed employee profile with tabs for different sections]</p>
+                    </div>
+                    
+                    <div class="diagram-placeholder">
+                        <h4>Add Employee Form Wireframe</h4>
+                        <p>[Wireframe showing multi-tab form for adding new employee]</p>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">7.3 UI Components</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Description</th>
+                                <th>Usage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dashboard Cards</td>
+                                <td>Statistical summary cards with key metrics</td>
+                                <td>Display high-level KPIs and summaries</td>
+                            </tr>
+                            <tr>
+                                <td>Employee Grid</td>
+                                <td>Card-based grid of employee summaries</td>
+                                <td>Browse and select employees for detailed view</td>
+                            </tr>
+                            <tr>
+                                <td>Filter Panel</td>
+                                <td>Collapsible panel with filtering options</td>
+                                <td>Filter employees by department, position, KPI, etc.</td>
+                            </tr>
+                            <tr>
+                                <td>Tabbed Interface</td>
+                                <td>Tab navigation for different sections</td>
+                                <td>Organize related content in employee profiles and forms</td>
+                            </tr>
+                            <tr>
+                                <td>Modal Dialogs</td>
+                                <td>Overlay dialogs for forms and detailed views</td>
+                                <td>Add employees, view details, confirm actions</td>
+                            </tr>
+                            <tr>
+                                <td>Charts and Graphs</td>
+                                <td>Visual representations of data</td>
+                                <td>Display performance trends, distributions, comparisons</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 8. Performance Requirements -->
+            <div class="section" id="performance-requirements">
+                <h2 class="section-title">8. Performance Requirements</h2>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">8.1 Response Time Requirements</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Operation</th>
+                                <th>Maximum Response Time</th>
+                                <th>Concurrent Users</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Page Load (Dashboard)</td>
+                                <td>5 seconds</td>
+                                <td>100 users</td>
+                            </tr>
+                            <tr>
+                                <td>Page Load (Employee List)</td>
+                                <td>3 seconds</td>
+                                <td>100 users</td>
+                            </tr>
+                            <tr>
+                                <td>Employee Profile Load</td>
+                                <td>3 seconds</td>
+                                <td>50 users</td>
+                            </tr>
+                            <tr>
+                                <td>Search/Filter Operation</td>
+                                <td>2 seconds</td>
+                                <td>50 users</td>
+                            </tr>
+                            <tr>
+                                <td>Save Employee Data</td>
+                                <td>3 seconds</td>
+                                <td>20 users</td>
+                            </tr>
+                            <tr>
+                                <td>Generate Report</td>
+                                <td>30 seconds</td>
+                                <td>10 users</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">8.2 Throughput Requirements</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Operation</th>
+                                <th>Minimum Throughput</th>
+                                <th>Measurement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Page Views</td>
+                                <td>1000</td>
+                                <td>per hour</td>
+                            </tr>
+                            <tr>
+                                <td>Search Operations</td>
+                                <td>500</td>
+                                <td>per hour</td>
+                            </tr>
+                            <tr>
+                                <td>Data Updates</td>
+                                <td>200</td>
+                                <td>per hour</td>
+                            </tr>
+                            <tr>
+                                <td>Report Generation</td>
+                                <td>50</td>
+                                <td>per hour</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">8.3 Resource Utilization</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Resource</th>
+                                <th>Maximum Utilization</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CPU</td>
+                                <td>75%</td>
+                                <td>Average during peak hours</td>
+                            </tr>
+                            <tr>
+                                <td>Memory</td>
+                                <td>80%</td>
+                                <td>Average during peak hours</td>
+                            </tr>
+                            <tr>
+                                <td>Disk I/O</td>
+                                <td>60%</td>
+                                <td>Average during peak hours</td>
+                            </tr>
+                            <tr>
+                                <td>Network Bandwidth</td>
+                                <td>50 Mbps</td>
+                                <td>Per server during peak hours</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">8.4 Scalability Requirements</h3>
+                    <ul>
+                        <li>The system shall support up to 5,000 employee records without significant performance degradation</li>
+                        <li>The system shall handle a 20% increase in users and data volume without hardware upgrades</li>
+                        <li>The system architecture shall support horizontal scaling by adding additional application servers</li>
+                        <li>Database shall support partitioning and indexing for optimal query performance with large datasets</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 9. Security Requirements -->
+            <div class="section" id="security-requirements">
+                <h2 class="section-title">9. Security Requirements</h2>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">9.1 Authentication Requirements</h3>
+                    <ul>
+                        <li>Users shall authenticate with username and password</li>
+                        <li>Passwords shall be at least 8 characters with complexity requirements</li>
+                        <li>Account lockout after 5 failed login attempts</li>
+                        <li>Session timeout after 30 minutes of inactivity</li>
+                        <li>Support for integration with existing DAMRI authentication systems</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">9.2 Authorization Requirements</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Role</th>
+                                <th>Permissions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>HR Administrator</td>
+                                <td>Full access to employee data management, reporting, and system configuration</td>
+                            </tr>
+                            <tr>
+                                <td>Department Manager</td>
+                                <td>Access to team members' data, performance analytics, and recommendations for their department</td>
+                            </tr>
+                            <tr>
+                                <td>Executive User</td>
+                                <td>Access to high-level dashboards, analytics, and reports across all departments</td>
+                            </tr>
+                            <tr>
+                                <td>Read-Only User</td>
+                                <td>View-only access to dashboards and reports</td>
+                            </tr>
+                            <tr>
+                                <td>System Administrator</td>
+                                <td>Full system access including user management, security configuration, and system maintenance</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">9.3 Data Security Requirements</h3>
+                    <ul>
+                        <li>All sensitive data (PII) shall be encrypted at rest using AES-256</li>
+                        <li>All data transmissions shall use TLS 1.2 or higher</li>
+                        <li>Database backups shall be encrypted and stored securely</li>
+                        <li>Access to production database shall be restricted to authorized personnel only</li>
+                        <li>Regular security audits and vulnerability assessments shall be conducted</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">9.4 Compliance Requirements</h3>
+                    <ul>
+                        <li>Comply with Indonesian Personal Data Protection Law (UU PDP)</li>
+                        <li>Comply with DAMRI internal data security policies</li>
+                        <li>Maintain audit trails for all data access and modifications</li>
+                        <li>Implement data retention policies according to legal requirements</li>
+                        <li>Provide data export capabilities for employee data portability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 10. Appendix -->
+            <div class="section" id="appendix">
+                <h2 class="section-title">10. Appendix</h2>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">10.1 KPI Component Weighting</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Weight</th>
+                                <th>Measurement</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Attendance</td>
+                                <td>15%</td>
+                                <td>Percentage (0-100)</td>
+                                <td>Based on attendance rate, late arrivals, and absences</td>
+                            </tr>
+                            <tr>
+                                <td>Supervisor Evaluation</td>
+                                <td>25%</td>
+                                <td>Scaled (1-5 to 20-100)</td>
+                                <td>Assessment from direct supervisor</td>
+                            </tr>
+                            <tr>
+                                <td>Behavioral Competencies</td>
+                                <td>20%</td>
+                                <td>Average of category scores</td>
+                                <td>Leadership, Communication, Teamwork, etc.</td>
+                            </tr>
+                            <tr>
+                                <td>Technical Competencies</td>
+                                <td>25%</td>
+                                <td>Average of category scores</td>
+                                <td>Job-specific technical skills</td>
+                            </tr>
+                            <tr>
+                                <td>Training & Certification</td>
+                                <td>10%</td>
+                                <td>Completion rate and level</td>
+                                <td>Training completion and certifications earned</td>
+                            </tr>
+                            <tr>
+                                <td>Branch Performance</td>
+                                <td>5%</td>
+                                <td>Percentage (0-100)</td>
+                                <td>Performance of employee's branch/unit</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">10.2 Competency Categories</h3>
+                    
+                    <div class="subsection">
+                        <h4 class="subsection-title">Behavioral Competencies</h4>
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Description</th>
+                                    <th>Assessment Method</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Leadership</td>
+                                    <td>Ability to guide, motivate, and influence others</td>
+                                    <td>360-degree feedback, supervisor evaluation</td>
+                                </tr>
+                                <tr>
+                                    <td>Communication</td>
+                                    <td>Effectiveness in verbal and written communication</td>
+                                    <td>Peer reviews, supervisor evaluation</td>
+                                </tr>
+                                <tr>
+                                    <td>Teamwork</td>
+                                    <td>Ability to work collaboratively with others</td>
+                                    <td>Team feedback, project outcomes</td>
+                                </tr>
+                                <tr>
+                                    <td>Problem Solving</td>
+                                    <td>Ability to identify and resolve problems effectively</td>
+                                    <td>Case studies, supervisor evaluation</td>
+                                </tr>
+                                <tr>
+                                    <td>Adaptability</td>
+                                    <td>Flexibility in responding to change and challenges</td>
+                                    <td>Supervisor evaluation, peer feedback</td>
+                                </tr>
+                                <tr>
+                                    <td>Reliability</td>
+                                    <td>Consistency in delivering quality work on time</td>
+                                    <td>Performance metrics, supervisor evaluation</td>
+                                </tr>
+                                <tr>
+                                    <td>Initiative</td>
+                                    <td>Proactive approach to work and problem-solving</td>
+                                    <td>Project outcomes, supervisor evaluation</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4 class="subsection-title">Technical Competencies (by Department)</h4>
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Department</th>
+                                    <th>Technical Competencies</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Operations</td>
+                                    <td>Logistics Management, Fleet Management, Route Planning, Schedule Management, Resource Allocation, Budgeting</td>
+                                </tr>
+                                <tr>
+                                    <td>HR</td>
+                                    <td>Recruitment, Employee Relations, Compensation Management, Benefits Administration, Training Coordination, Compliance</td>
+                                </tr>
+                                <tr>
+                                    <td>Maintenance</td>
+                                    <td>Vehicle Repair, Preventive Maintenance, Parts Management, Safety Procedures, Equipment Operation, Diagnostic Skills</td>
+                                </tr>
+                                <tr>
+                                    <td>Finance</td>
+                                    <td>Financial Reporting, Budget Analysis, Audit Preparation, Tax Compliance, Cost Management, Financial Planning</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">10.3 Training Suitability Confidence Levels</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Confidence Level</th>
+                                <th>Range</th>
+                                <th>Description</th>
+                                <th>Recommendation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>High</td>
+                                <td>90-100%</td>
+                                <td>Comprehensive data available for accurate recommendations</td>
+                                <td>Strong recommendation with high reliability</td>
+                            </tr>
+                            <tr>
+                                <td>Medium</td>
+                                <td>75-89%</td>
+                                <td>Moderate data available, recommendations based on available information</td>
+                                <td>Recommendation with moderate reliability, consider additional data</td>
+                            </tr>
+                            <tr>
+                                <td>Low</td>
+                                <td>0-74%</td>
+                                <td>Limited data available, recommendations may have higher uncertainty</td>
+                                <td>Recommendation with low reliability, collect more data before decision</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">10.4 Revision History</h3>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Version</th>
+                                <th>Date</th>
+                                <th>Author</th>
+                                <th>Description of Changes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.0</td>
+                                <td>October 26, 2023</td>
+                                <td>System Analyst</td>
+                                <td>Initial release of SRS document</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p><strong>DAMRI Human Capital Intelligence Platform - Software Requirements Specification</strong></p>
+                <p>© 2023 DAMRI. All rights reserved.</p>
+                <p>Confidential and Proprietary - For Internal Use Only</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling for navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
